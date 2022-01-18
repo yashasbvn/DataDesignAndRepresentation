@@ -1,3 +1,5 @@
+#This file was tested on BBEdit on MacOS.
+
 1. to remove the credit_card column.  
 Search Term: ([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+),([0-9]+)?,
 Replace Term: \1,
