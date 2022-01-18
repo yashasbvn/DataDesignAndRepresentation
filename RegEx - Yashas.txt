@@ -1,0 +1,35 @@
+1. to remove the credit_card column.  
+Search Term: ([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+),([0-9]+)?,
+Replace Term: \1,
+
+2. to remove the ssn column.  
+Search Term: ,[0-9]{3}-[0-9]{2}-[0-9]{4},
+Replace Term: ,
+
+3. to remove everything BUT email (the document should only contain email addresses).  
+Search Term: (.*,)([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)(,.*)
+Replace Term: \2
+
+4. to remove everything BUT last_seen AND invert the date in last_seen to day.month.year hour:minute:second (the document should only contain a modified last_seen).  
+Search Term: (.*),([0-9]{4})?-?([0-9]{2})?-?([0-9]{2})?T?([0-9]{2}:[0-9]{2}:[0-9]{2})?Z?,([0-9]{3}-[0-9]{2}-[0-9]{4})(.*)
+
+Replace Term: \4.\3.\2 \5
+
+5. to transform the column birthday from European to US data format while leaving the rest as is. 
+
+Search Term: (The column was not present in the data)
+
+Replace Term: 
+ 
+6. to remove everything BUT the email column.  
+Search Term: (.*,)([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)(,.*)
+Replace Term: \2
+
+7. to convert all rows to "last_name [TAB] first_name [TAB] ip_address" only (strip the rest). ([TAB]s will allow you to copy and paste it's result into excel.)  
+Search Term: ([0-9]+),([A-Za-z'-]+)?,([A-Za-z ']+)?,([A-Za-z-]+)?,([0-9]+.[0-9]+.[0-9]+.[0-9]+)?(.*)\n
+Replace Term: \3\t\2\t\5\n
+8. to convert all rows to "last_name [TAB] first_name [TAB] last_4_digits_of_credit_card " only (strip the rest). ([TAB]s will allow you to copy and paste it's result into excel.)  
+
+Search Term: ([0-9]+),([A-Za-z'-]+)?,([A-Za-z ']+)?,(.*),([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+),(.*?)([0-9]{4})?,(.*),[0-9]{3}-[0-9]{2}-[0-9]{4},(.*)\n
+
+Replace Term: \3\t\2\t\7\n
